@@ -1,6 +1,6 @@
 import { PlayerModel } from "../models/player-model";
 
-const database: PlayerModel[] = [
+export const database: PlayerModel[] = [
   {
     id: 1,
     name: "Lionel Messi",
@@ -312,6 +312,25 @@ export const findAllPlayers = async (): Promise<PlayerModel[]> => {
 };
 
 export const findPlayerById = async (
+  id: number
+): Promise<PlayerModel | undefined> => {
+  return database.find((player) => player.id === id);
+};
+
+export const postRegisterPlayer = async (
+  newPlayer: PlayerModel
+): Promise<PlayerModel> => {
+  await database.push(newPlayer);
+  return newPlayer;
+};
+
+export const delePlayerById = async (
+  id: number
+): Promise<PlayerModel | undefined> => {
+  return database.find((player) => player.id === id);
+};
+
+export const updatePlayerById = async (
   id: number
 ): Promise<PlayerModel | undefined> => {
   return database.find((player) => player.id === id);
